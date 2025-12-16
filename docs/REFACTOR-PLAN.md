@@ -54,3 +54,19 @@ Retarget the CLI from creating and validating Claude Agent Skills to generating,
 - Confirm Copilot import format and whether chat vs. workspace require different manifests.
 - Determine official hook/activation mechanism for Copilot (if any) to replace Claude hooks.
 - Token/line limits for Copilot instructions are assumed similar to Claude; adjust once official guidance is verified.
+
+## Task Breakdown (Initial)
+- Foundations (Alignment & Compatibility)
+  - [ ] Add a shared skill layout resolver that prefers `.copilot/skills` when present and falls back to `.claude/skills`.
+  - [ ] Introduce a `copilot-skills-cli` binary alias and begin surfacing deprecation messaging for the legacy name.
+- Templates & Init
+  - [ ] Create a Copilot-focused `INSTRUCTION.md` template and wire `init` to target `.copilot/skills` by default.
+  - [ ] Support `--legacy` flag during `init` to scaffold Claude-compatible assets when explicitly requested.
+- Validation & Doctor
+  - [ ] Update validators to enforce Copilot-specific fields (summary, triggers, capabilities) and tuned limits.
+  - [ ] Extend `doctor` to normalize frontmatter into the Copilot schema and fix multiline summaries.
+- Migration & Packaging
+  - [ ] Ship a `migrate` command that converts `.claude/skills/<name>` into `.copilot/skills/<name>` with renamed files.
+  - [ ] Adjust `package` output to emit `<name>-copilot-skill.zip` and include any required manifest metadata.
+- Stats & Reporting
+  - [ ] Enhance `stats` to surface Copilot quality signals (trigger coverage, examples) and flag legacy layouts.
