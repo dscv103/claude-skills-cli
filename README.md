@@ -4,6 +4,10 @@ CLI for creating Claude Agent Skills with progressive disclosure
 validation. Built for Claude Code to use when humans ask it to create
 skills.
 
+> **Roadmap:** See [docs/REFACTOR-PLAN.md](docs/REFACTOR-PLAN.md) for
+> the planned shift from Claude Code skills to GitHub Copilot
+> instructions/skills.
+
 ## For Humans Using Claude Code
 
 Tell Claude Code to create skills with specific package manager
