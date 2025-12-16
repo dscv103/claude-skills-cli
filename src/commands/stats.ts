@@ -5,7 +5,13 @@ import type { StatsOptions } from '../types.js';
 import { error } from '../utils/output.js';
 
 export function stats_command(options: StatsOptions): void {
-	const directory = options.directory || '.claude/skills';
+	let directory = options.directory;
+
+	if (!directory) {
+		const copilot_dir = '.copilot/skills';
+		const claude_dir = '.claude/skills';
+		directory = existsSync(copilot_dir) ? copilot_dir : claude_dir;
+	}
 
 	// Verify directory exists
 	if (!existsSync(directory)) {
